@@ -8,6 +8,7 @@ interface Option {
 interface SelectProps {
   id: string;
   label: string;
+  name: string;
   options: Option[];
   value: string;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -20,6 +21,7 @@ interface SelectProps {
 const Select: React.FC<SelectProps> = ({
   id,
   label,
+  name,
   options,
   value,
   onChange,
@@ -40,6 +42,7 @@ const Select: React.FC<SelectProps> = ({
       <select
         id={id}
         value={value}
+        name={name}
         onChange={onChange}
         required={required}
         className={`block w-full px-3 py-2 border ${error ? 'border-red-500' : 'border-gray-300'} bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm`}

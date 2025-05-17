@@ -3,6 +3,7 @@ import React from 'react';
 interface InputProps {
   id: string;
   label: string;
+  name: string;
   type?: string;
   placeholder?: string;
   value: string;
@@ -15,6 +16,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({
   id,
   label,
+  name,
   type = 'text',
   placeholder = '',
   value,
@@ -35,6 +37,7 @@ const Input: React.FC<InputProps> = ({
       <input
         id={id}
         type={type}
+        name={name}
         placeholder={placeholder}
         value={value}
         onChange={onChange}

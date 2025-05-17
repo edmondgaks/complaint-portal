@@ -118,7 +118,10 @@ const ComplaintForm: React.FC = () => {
     setIsSubmitting(true);
     
     try {
-      addComplaint(formData);
+      addComplaint({
+    ...formData,
+    userId: user?.id ?? ''
+  });
       
       // Simulate network delay
       await new Promise(resolve => setTimeout(resolve, 1000));
