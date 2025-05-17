@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import SubmitPage from './pages/SubmitPage';
 import { ComplaintsProvider } from './context/ComplaintsContext';
+import TrackPage from './pages/TrackPage';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/submit" element={<SubmitPage />} />
+              <Route path="/track" element={<TrackPage />} />
 
            
               <Route path="/login" element={<LoginPage />} />
