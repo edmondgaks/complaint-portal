@@ -4,21 +4,28 @@ import { AuthProvider } from './context/AuthContext';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
+import SubmitPage from './pages/SubmitPage';
+import { ComplaintsProvider } from './context/ComplaintsContext';
 
 
 function App() {
   return (
     <AuthProvider>
+      <ComplaintsProvider>
+
         <Router>
           <Layout>
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/submit" element={<SubmitPage />} />
+
            
               <Route path="/login" element={<LoginPage />} />
               
             </Routes>
           </Layout>
         </Router>
+      </ComplaintsProvider>
     </AuthProvider>
   );
 }

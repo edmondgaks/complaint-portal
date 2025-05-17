@@ -5,7 +5,6 @@ import { generateId } from '../utils/helpers';
 // Create the auth context
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Mock users for demo
 const mockUsers = [
   {
     id: 'admin-1',
@@ -38,7 +37,6 @@ const mockUsers = [
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
-  // Check for saved user on initial load
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
@@ -47,7 +45,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, password: string): Promise<void> => {
-    // For MVP, we're just checking if the email matches one of our mock users
     const foundUser = mockUsers.find(u => u.email === email);
     
     if (foundUser) {
