@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and description */}
           <div className="col-span-1 md:col-span-1">
-            <h2 className="text-2xl font-bold text-blue-400">CivicLink</h2>
+            <h2 className="text-2xl font-bold text-blue-400">Complaint Portal</h2>
             <p className="mt-2 text-sm text-gray-300">
               Connecting citizens with government services. Your voice matters.
             </p>
