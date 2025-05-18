@@ -37,10 +37,8 @@ const complaintSchema = new mongoose.Schema({
     minlength: [10, 'Description must be at least 10 characters']
   },
   location: {
-    address: {
       type: String,
       required: [true, 'Please provide an address']
-    },
   },
   media: [{
     type: String, // URL to the uploaded file

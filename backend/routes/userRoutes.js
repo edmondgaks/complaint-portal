@@ -25,7 +25,6 @@ router.post(
   userController.login
 );
 
-// GET /api/users/me - Get current user profile
 router.get(
   '/me',
   authenticate,

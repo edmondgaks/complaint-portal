@@ -1,91 +1,103 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { AuthContextType, User } from '../types';
-import { generateId } from '../utils/helpers';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
-// Create the auth context
+interface AuthContextType {
+  isAuthenticated: boolean;
+  user: User | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => void;
+}
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  department: string;
+  role: 'admin' | 'staff';
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const mockUsers = [
+// Mock admin data
+const MOCK_ADMINS = [
   {
-    id: 'admin-1',
+    id: '1',
     name: 'Admin User',
     email: 'admin@example.com',
+    password: 'admin123',
+    department: 'Administration',
     role: 'admin' as const,
   },
   {
-    id: 'staff-1',
-    name: 'Staff Roads',
+    id: '2',
+    name: 'Water Department',
+    email: 'water@example.com',
+    password: 'water123',
+    department: 'Water',
+    role: 'staff' as const,
+  },
+  {
+    id: '3',
+    name: 'Roads Department',
     email: 'roads@example.com',
+    password: 'roads123',
+    department: 'Roads',
     role: 'staff' as const,
-    department: 'roads' as const,
   },
-  {
-    id: 'staff-2',
-    name: 'Staff Sanitation',
-    email: 'sanitation@example.com',
-    role: 'staff' as const,
-    department: 'sanitation' as const,
-  },
-  {
-    id: 'citizen-1',
-    name: 'John Citizen',
-    email: 'john@example.com',
-    role: 'citizen' as const,
-  }
 ];
 
+const AUTH_STORAGE_KEY = 'civicvoice_auth';
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem('user');
-    if (savedUser) {
-      setUser(JSON.parse(savedUser));
+    const savedAuth = localStorage.getItem(AUTH_STORAGE_KEY);
+    if (savedAuth) {
+      const parsedAuth = JSON.parse(savedAuth);
+      setIsAuthenticated(true);
+      setUser(parsedAuth.user);
     }
   }, []);
 
-  const login = async (email: string, password: string): Promise<void> => {
-    const foundUser = mockUsers.find(u => u.email === email);
-    
-    if (foundUser) {
-      setUser(foundUser);
-      localStorage.setItem('user', JSON.stringify(foundUser));
-      return Promise.resolve();
-    } else {
-      // Create a new citizen user
-      const newUser: User = {
-        id: generateId(),
-        name: email.split('@')[0], // Simple name from email
-        email,
-        role: 'citizen'
-      };
-      setUser(newUser);
-      localStorage.setItem('user', JSON.stringify(newUser));
-      return Promise.resolve();
+  const login = async (email: string, password: string): Promise<boolean> => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+
+    const foundAdmin = MOCK_ADMINS.find(
+      (admin) => admin.email === email && admin.password === password
+    );
+
+    if (foundAdmin) {
+      const { password, ...userWithoutPassword } = foundAdmin;
+      setIsAuthenticated(true);
+      setUser(userWithoutPassword);
+      
+      // Save to localStorage
+      localStorage.setItem(
+        AUTH_STORAGE_KEY,
+        JSON.stringify({ isAuthenticated: true, user: userWithoutPassword })
+      );
+      
+      return true;
     }
+    
+    return false;
   };
 
   const logout = () => {
+    setIsAuthenticated(false);
     setUser(null);
-    localStorage.removeItem('user');
+    localStorage.removeItem(AUTH_STORAGE_KEY);
   };
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        login, 
-        logout, 
-        isAuthenticated: !!user,
-        isAdmin: user?.role === 'admin' || user?.role === 'staff'
-      }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-export const useAuth = (): AuthContextType => {
+export const useAuth = () => {
   const context = useContext(AuthContext);
   if (context === undefined) {
     throw new Error('useAuth must be used within an AuthProvider');

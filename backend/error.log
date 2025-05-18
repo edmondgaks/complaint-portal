@@ -56,3 +56,9 @@ SyntaxError: Expected double-quoted property name in JSON at position 231 (line 
     at IncomingMessage.emit (node:events:518:28)
     at endReadableNT (node:internal/streams/readable:1698:12)
     at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2025-05-18 16:51:28 error: Error creating complaint: Complaint validation failed: priority: `medium` is not a valid enum value for path `priority`.
+ValidationError: Complaint validation failed: priority: `medium` is not a valid enum value for path `priority`.
+    at Document.invalidate (C:\Users\edmond.gakuba\Documents\civic\backend\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Documents\civic\backend\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Documents\civic\backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)

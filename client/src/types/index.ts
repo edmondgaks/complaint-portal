@@ -3,6 +3,7 @@ export type Category =
   | 'sanitation'
   | 'electricity'
   | 'water'
+  | 'waste'
   | 'public_transport'
   | 'parks'
   | 'other';
@@ -43,11 +44,17 @@ export interface Comment {
 export interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
+  register: (
+    name: string,
+    email: string,
+    password: string,
+    phone: string,
+    address: string
+  ) => Promise<void>;
   logout: () => void;
   isAuthenticated: boolean;
   isAdmin: boolean;
 }
-
 export interface ComplaintsContextType {
   complaints: Complaint[];
   addComplaint: (complaint: Omit<Complaint, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'comments'>) => void;

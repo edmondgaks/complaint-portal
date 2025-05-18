@@ -8,6 +8,7 @@ const rateLimit = require('express-rate-limit');
 const complaintRoutes = require('./routes/complaintRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const agencyRoutes = require('./routes/agencyRoutes');
 
 const { errorHandler } = require('./middleware/errorHandler');
 const logger = require('./utils/logger');
@@ -15,7 +16,7 @@ const logger = require('./utils/logger');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/citizen-engagement')
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     logger.info('Connected to MongoDB');
   })
@@ -24,10 +25,10 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/citizen-e
     process.exit(1);
   });
 
-app.use(helmet()); // Security headers
+app.use(helmet());
 app.use(cors()); // Enable CORS
-app.use(express.json()); // Parse JSON bodies
-app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 // Rate limiting
 const limiter = rateLimit({
@@ -40,7 +41,6 @@ const limiter = rateLimit({
 });
 app.use(limiter);
 
-// Request logging middleware
 app.use((req, res, next) => {
   logger.info(`${req.method} ${req.url}`);
   next();
@@ -50,18 +50,17 @@ app.use((req, res, next) => {
 app.use('/api/complaints', complaintRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/agencies', agencyRoutes);
 
 // Health check route
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Server is running' });
 });
 
-// 404 handler
 app.use((req, res) => {
   res.status(404).json({ status: 404, message: 'Not Found' });
 });
 
-// Error handling middleware
 app.use(errorHandler);
 
 // Start the server
@@ -69,4 +68,4 @@ app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
 });
 
-module.exports = app; // Export for testing
+module.exports = app; 

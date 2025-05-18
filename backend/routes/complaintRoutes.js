@@ -4,6 +4,7 @@ const router = express.Router();
 const complaintController = require('../controllers/complaintController');
 const { authenticate } = require('../middleware/auth');
 const { upload } = require('../middleware/upload');
+const { categorizationMiddleware } = require('../middleware/categorization');
 
 // POST /api/complaints - Submit a new complaint
 router.post(
@@ -13,17 +14,19 @@ router.post(
   [
     check('category', 'Category is required').not().isEmpty(),
     check('description', 'Description is required and must be at least 10 characters').isLength({ min: 10 }),
-    check('location.address', 'Address is required').not().isEmpty()
+    check('location', 'Location is required').not().isEmpty()
   ],
   complaintController.createComplaint
 );
+router.get('/my', authenticate, complaintController.getUserComplaints);
 
-// GET /api/complaints/:id - Get complaint by ticket ID
 router.get(
   '/:id',
   authenticate,
   complaintController.getComplaintById
 );
+
+
 
 // GET /api/complaints - List complaints (with filters)
 router.get(
@@ -32,7 +35,6 @@ router.get(
   complaintController.getComplaints
 );
 
-// PATCH /api/complaints/:id/status - Update complaint status
 router.patch(
   '/:id/status',
   authenticate,
@@ -42,7 +44,6 @@ router.patch(
   complaintController.updateComplaintStatus
 );
 
-// POST /api/complaints/:id/response - Add a response to a complaint
 router.post(
   '/:id/response',
   authenticate,

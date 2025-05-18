@@ -86,13 +86,3 @@ export const filterComplaints = (
     return matches;
   });
 };
-
-export const getRandomName = (): string => {
-  const firstNames = ['John', 'Jane', 'Michael', 'Sarah', 'David', 'Emily', 'Robert', 'Olivia'];
-  const lastNames = ['Smith', 'Johnson', 'Williams', 'Brown', 'Jones', 'Miller', 'Davis', 'Wilson'];
-  
-  const firstName = firstNames[Math.floor(Math.random() * firstNames.length)];
-  const lastName = lastNames[Math.floor(Math.random() * lastNames.length)];
-  
-  return `${firstName} ${lastName}`;
-};

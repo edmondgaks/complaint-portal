@@ -1,198 +1,127 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
-import { Complaint, ComplaintsContextType } from '../types';
-import { generateId } from '../utils/helpers';
-import { useAuth } from './AuthContext';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { ComplaintType, ComplaintStatus, Department } from '../types/complaint';
 
-// Create the complaints context
-const ComplaintsContext = createContext<ComplaintsContextType | undefined>(undefined);
+interface ComplaintContextType {
+  complaints: ComplaintType[];
+  addComplaint: (complaint: Omit<ComplaintType, 'id' | 'createdAt' | 'status' | 'updates'>) => string;
+  getComplaintById: (id: string) => ComplaintType | undefined;
+  updateComplaintStatus: (id: string, status: ComplaintStatus, message: string) => void;
+  addResponse: (id: string, message: string) => void;
+  filterComplaints: (department?: Department, status?: ComplaintStatus, search?: string) => ComplaintType[];
+}
 
-// Initial mock data for demonstration
-const initialComplaints: Complaint[] = [
-  {
-    id: 'c1',
-    title: 'Pothole on Main Street',
-    description: 'Large pothole causing traffic issues and potential vehicle damage.',
-    category: 'roads',
-    location: '123 Main St, Downtown',
-    status: 'in_progress',
-    priority: 'high',
-    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-    userId: 'citizen-1',
-    assignedTo: 'staff-1',
-    comments: [
-      {
-        id: 'comment-1',
-        text: 'We have scheduled repairs for next week.',
-        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-        userId: 'staff-1',
-        userName: 'Staff Roads',
-        userRole: 'staff'
-      }
-    ]
-  },
-  {
-    id: 'c2',
-    title: 'Street light out',
-    description: 'Street light at the corner of Oak and Pine has been out for a week.',
-    category: 'electricity',
-    location: 'Corner of Oak and Pine',
-    status: 'new',
-    priority: 'medium',
-    createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-    updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000).toISOString(),
-    userId: 'citizen-1',
-    comments: []
-  },
-  {
-    id: 'c3',
-    title: 'Trash not collected',
-    description: 'Trash has not been collected for two weeks on Cedar Avenue.',
-    category: 'sanitation',
-    location: 'Cedar Avenue, Block 300-400',
-    status: 'resolved',
-    priority: 'medium',
-    createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000).toISOString(),
-    updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-    userId: 'citizen-1',
-    assignedTo: 'staff-2',
-    comments: [
-      {
-        id: 'comment-2',
-        text: 'Our team will collect the trash tomorrow.',
-        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-        userId: 'staff-2',
-        userName: 'Staff Sanitation',
-        userRole: 'staff'
-      },
-      {
-        id: 'comment-3',
-        text: 'The trash has been collected. Thank you for your patience.',
-        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000).toISOString(),
-        userId: 'staff-2',
-        userName: 'Staff Sanitation',
-        userRole: 'staff'
-      }
-    ]
-  }
-];
+const ComplaintContext = createContext<ComplaintContextType | undefined>(undefined);
 
-export const ComplaintsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [complaints, setComplaints] = useState<Complaint[]>([]);
-  const { user } = useAuth();
+const STORAGE_KEY = 'civicvoice_complaints';
 
-  // Load complaints from localStorage on initial render
-  useEffect(() => {
-    const savedComplaints = localStorage.getItem('complaints');
-    if (savedComplaints) {
-      setComplaints(JSON.parse(savedComplaints));
-    } else {
-      setComplaints(initialComplaints);
-      localStorage.setItem('complaints', JSON.stringify(initialComplaints));
-    }
-  }, []);
+export const ComplaintProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [complaints, setComplaints] = useState<ComplaintType[]>(() => {
+    const savedComplaints = localStorage.getItem(STORAGE_KEY);
+    return savedComplaints ? JSON.parse(savedComplaints) : [];
+  });
 
   // Save complaints to localStorage whenever they change
   useEffect(() => {
-    if (complaints.length > 0) {
-      localStorage.setItem('complaints', JSON.stringify(complaints));
-    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(complaints));
   }, [complaints]);
 
-  const addComplaint = (complaintData: Omit<Complaint, 'id' | 'createdAt' | 'updatedAt' | 'status' | 'comments'>) => {
-    if (!user) return;
-    
-    const newComplaint: Complaint = {
+  const addComplaint = (complaintData: Omit<ComplaintType, 'id' | 'createdAt' | 'status' | 'updates'>) => {
+    const id = uuidv4();
+    const newComplaint: ComplaintType = {
+      id,
       ...complaintData,
-      id: generateId(),
       createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-      status: 'new',
-      userId: user.id,
-      comments: []
+      status: 'Received',
+      updates: [
+        {
+          date: new Date().toISOString(),
+          status: 'Received',
+          message: 'Your complaint has been received and is being reviewed.',
+        },
+      ],
     };
-    
-    setComplaints(prev => [newComplaint, ...prev]);
+
+    setComplaints((prevComplaints) => [...prevComplaints, newComplaint]);
+    return id;
   };
-  
-  const updateComplaintStatus = (id: string, status: Complaint['status']) => {
-    setComplaints(prev => 
-      prev.map(complaint => 
-        complaint.id === id 
-          ? { 
-              ...complaint, 
-              status, 
-              updatedAt: new Date().toISOString() 
-            } 
-          : complaint
-      )
+
+  const getComplaintById = (id: string) => {
+    return complaints.find((complaint) => complaint.id === id);
+  };
+
+  const updateComplaintStatus = (id: string, status: ComplaintStatus, message: string) => {
+    setComplaints((prevComplaints) =>
+      prevComplaints.map((complaint) => {
+        if (complaint.id === id) {
+          const update = {
+            date: new Date().toISOString(),
+            status,
+            message,
+          };
+          return {
+            ...complaint,
+            status,
+            updates: [...complaint.updates, update],
+          };
+        }
+        return complaint;
+      })
     );
   };
-  
-  const addComment = (complaintId: string, text: string) => {
-    if (!user) return;
-    
-    const newComment = {
-      id: generateId(),
-      text,
-      createdAt: new Date().toISOString(),
-      userId: user.id,
-      userName: user.name,
-      userRole: user.role
-    };
-    
-    setComplaints(prev => 
-      prev.map(complaint => 
-        complaint.id === complaintId 
-          ? { 
-              ...complaint, 
-              comments: [...complaint.comments, newComment],
-              updatedAt: new Date().toISOString()
-            } 
-          : complaint
-      )
+
+  const addResponse = (id: string, message: string) => {
+    setComplaints((prevComplaints) =>
+      prevComplaints.map((complaint) => {
+        if (complaint.id === id) {
+          const update = {
+            date: new Date().toISOString(),
+            status: complaint.status,
+            message,
+          };
+          return {
+            ...complaint,
+            updates: [...complaint.updates, update],
+          };
+        }
+        return complaint;
+      })
     );
   };
-  
-  const getComplaint = (id: string) => {
-    return complaints.find(complaint => complaint.id === id);
-  };
-  
-  const assignComplaint = (complaintId: string, staffId: string) => {
-    setComplaints(prev => 
-      prev.map(complaint => 
-        complaint.id === complaintId 
-          ? { 
-              ...complaint, 
-              assignedTo: staffId,
-              status: complaint.status === 'new' ? 'in_progress' : complaint.status,
-              updatedAt: new Date().toISOString() 
-            } 
-          : complaint
-      )
-    );
+
+  const filterComplaints = (department?: Department, status?: ComplaintStatus, search?: string) => {
+    return complaints.filter((complaint) => {
+      const matchesDepartment = !department || complaint.department === department;
+      const matchesStatus = !status || complaint.status === status;
+      const matchesSearch = !search || 
+        complaint.description.toLowerCase().includes(search.toLowerCase()) ||
+        complaint.location.toLowerCase().includes(search.toLowerCase()) ||
+        complaint.id.toLowerCase().includes(search.toLowerCase());
+      
+      return matchesDepartment && matchesStatus && matchesSearch;
+    });
   };
 
   return (
-    <ComplaintsContext.Provider
+    <ComplaintContext.Provider
       value={{
         complaints,
         addComplaint,
+        getComplaintById,
         updateComplaintStatus,
-        addComment,
-        getComplaint,
-        assignComplaint
+        addResponse,
+        filterComplaints,
       }}
     >
       {children}
-    </ComplaintsContext.Provider>
+    </ComplaintContext.Provider>
   );
 };
 
-export const useComplaints = (): ComplaintsContextType => {
-  const context = useContext(ComplaintsContext);
+export const useComplaints = () => {
+  const context = useContext(ComplaintContext);
   if (context === undefined) {
-    throw new Error('useComplaints must be used within a ComplaintsProvider');
+    throw new Error('useComplaints must be used within a ComplaintProvider');
   }
   return context;
 };

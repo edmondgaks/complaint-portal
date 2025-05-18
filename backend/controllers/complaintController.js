@@ -19,19 +19,19 @@ exports.createComplaint = async (req, res) => {
       location,
       priority
     } = req.body;
-    console.log(req.body);
+    console.log("Request:", req);
 
     // Create a new complaint
     const complaint = new Complaint({
       user: req.user.id, // From auth middleware
       category,
+      title,
       description,
       location,
       priority: priority || 'Medium',
       media: req.files ? req.files.map(file => file.path) : []
     });
 
-    // Apply categorization middleware
     await categorizationMiddleware(complaint);
 
     // Save the complaint
@@ -86,6 +86,21 @@ exports.getComplaintById = async (req, res) => {
     });
   }
 };
+
+exports.getUserComplaints = async (req, res) => {
+  console.log("User ID:", req.user.id);
+  try {
+    const complaints = await Complaint.find({ user: req.user.id }).populate('user');
+    res.status(200).json({
+      success: true,
+      count: complaints.length,
+      data: complaints
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Server Error' });
+  }
+};
+
 
 // Get all complaints with filters
 exports.getComplaints = async (req, res) => {
