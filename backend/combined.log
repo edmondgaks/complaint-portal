@@ -1,0 +1,150 @@
+2025-05-17 07:35:38 info: Server running on port 3000
+2025-05-17 07:35:40 info: GET /
+2025-05-17 07:35:42 info: GET /
+2025-05-17 07:35:43 info: GET /
+2025-05-17 07:35:52 info: GET /
+2025-05-17 07:36:00 info: GET /
+2025-05-17 07:40:42 info: Server running on port 3000
+2025-05-17 07:40:43 info: GET /
+2025-05-17 07:40:43 info: GET /
+2025-05-17 07:40:45 info: GET /
+2025-05-17 07:40:57 info: GET /
+2025-05-17 07:40:59 info: GET /
+2025-05-17 07:46:43 info: Server running on port 3000
+2025-05-17 07:47:13 error: MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\connection.js:1165:11)
+    at NativeConnection.openUri (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\connection.js:1096:11)
+2025-05-17 07:54:29 info: Server running on port 3000
+2025-05-17 07:54:30 info: Connected to MongoDB
+2025-05-17 07:57:04 info: GET /health
+2025-05-17 08:15:46 info: GET /api/complaints
+2025-05-17 08:16:02 info: POST /api/complaints
+2025-05-17 08:40:12 info: POST /api/users/register
+2025-05-17 08:41:17 info: POST /api/complaints
+2025-05-17 08:41:57 info: POST /api/complaints
+2025-05-17 08:44:49 info: POST /api/complaints
+2025-05-17 08:45:57 info: POST /api/complaints
+2025-05-17 08:45:58 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Infrastructure` is not a valid enum value for path `category`.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Infrastructure` is not a valid enum value for path `category`.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:22 info: POST /api/complaints
+2025-05-17 08:48:22 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Roads` is not a valid enum value for path `category`.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Roads` is not a valid enum value for path `category`.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:27 info: POST /api/complaints
+2025-05-17 08:48:27 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:56 info: POST /api/complaints
+2025-05-17 08:48:56 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:51:41 info: POST /api/complaints
+2025-05-17 08:51:41 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:55:42 info: POST /api/complaints
+2025-05-17 08:55:42 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:57:51 info: POST /api/complaints
+2025-05-17 08:57:52 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:59:08 info: Server running on port 3000
+2025-05-17 08:59:10 info: Connected to MongoDB
+2025-05-17 08:59:40 info: POST /api/complaints
+2025-05-17 09:00:43 info: Server running on port 3000
+2025-05-17 09:00:44 info: Connected to MongoDB
+2025-05-17 09:00:53 error: SyntaxError: Expected double-quoted property name in JSON at position 231 (line 7 column 3)
+SyntaxError: Expected double-quoted property name in JSON at position 231 (line 7 column 3)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+2025-05-17 09:01:02 info: POST /api/complaints
+2025-05-17 12:33:02 info: POST /api/complaints
+2025-05-17 12:44:28 info: GET /api/admin/complaints
+2025-05-17 12:50:11 info: GET /api/users/login
+2025-05-17 12:50:17 info: POST /api/users/login
+2025-05-17 12:50:25 info: POST /api/users/login
+2025-05-17 12:50:29 info: POST /api/users/login
+2025-05-17 12:50:41 info: POST /api/users/login
+2025-05-17 12:50:57 info: POST /api/users/login
+2025-05-17 12:51:40 info: POST /api/users/regist
+2025-05-17 12:51:48 info: POST /api/users/login
+2025-05-17 15:33:47 info: Server running on port 3000
+2025-05-17 15:33:49 info: Connected to MongoDB
+2025-05-17 15:54:26 info: Server running on port 3000
+2025-05-17 15:54:28 info: Connected to MongoDB
+2025-05-17 15:58:35 info: POST /api/users/login
+2025-05-17 15:58:41 info: POST /api/users/login
+2025-05-17 15:58:46 info: POST /api/users/login
+2025-05-17 15:58:54 info: POST /api/users/login
+2025-05-17 15:58:58 info: POST /api/users/login
+2025-05-17 16:00:11 info: GET /api/users/me
+2025-05-17 16:01:09 info: Server running on port 3000
+2025-05-17 16:01:10 info: Connected to MongoDB
+2025-05-17 16:01:13 info: GET /api/complaints
+2025-05-17 16:08:27 info: GET /api/complaints
+2025-05-17 16:08:41 info: POST /api/users/login
+2025-05-17 16:08:55 info: POST /api/users/register
+2025-05-17 16:09:21 info: GET /api/complaints
+2025-05-17 16:09:46 info: GET /api/admin/complaints
+2025-05-17 16:10:27 info: POST /api/users/login
+2025-05-17 16:10:50 info: GET /api/admin/complaints
+2025-05-17 16:51:44 info: POST /api/users/login
+2025-05-17 16:52:32 info: POST /api/users/register
+2025-05-17 16:55:59 info: POST /api/users/login
+2025-05-17 16:57:07 info: POST /api/users/login
+2025-05-17 16:58:28 info: POST /api/users/login
+2025-05-17 17:27:44 info: Server running on port 3000
+2025-05-17 17:27:46 info: Connected to MongoDB
+2025-05-17 17:27:56 info: Server running on port 3000
+2025-05-17 17:27:57 info: Connected to MongoDB
+2025-05-17 17:28:04 info: Server running on port 3000
+2025-05-17 17:28:05 info: Connected to MongoDB
+2025-05-17 17:29:33 info: Server running on port 3000
+2025-05-17 17:29:34 info: Connected to MongoDB
+2025-05-17 17:29:40 info: Server running on port 3000
+2025-05-17 17:29:41 info: Connected to MongoDB
+2025-05-17 17:29:50 info: Server running on port 3000
+2025-05-17 17:29:51 info: Connected to MongoDB
+2025-05-17 18:57:00 info: GET /
+2025-05-18 08:02:09 info: Server running on port 3000
+2025-05-18 08:02:10 info: Connected to MongoDB
+2025-05-18 08:02:40 info: Server running on port 3000
+2025-05-18 08:02:41 info: Connected to MongoDB
+2025-05-18 08:12:50 info: Server running on port 3000
+2025-05-18 08:12:51 info: Connected to MongoDB
+2025-05-18 08:22:46 info: POST /api/complaints
+2025-05-18 08:25:24 info: POST /api/users/login
+2025-05-18 08:25:43 info: POST /api/users/login

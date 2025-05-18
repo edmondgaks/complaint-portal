@@ -5,12 +5,17 @@ const cors = require('cors');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
-// Initialize express app
+const complaintRoutes = require('./routes/complaintRoutes');
+const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
+const { errorHandler } = require('./middleware/errorHandler');
+const logger = require('./utils/logger');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/citizen-engagement')
   .then(() => {
     logger.info('Connected to MongoDB');
   })
@@ -27,7 +32,7 @@ app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
 // Rate limiting
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
+  max: 100, 
   message: {
     status: 429,
     message: 'Too many requests, please try again later.'
@@ -41,6 +46,10 @@ app.use((req, res, next) => {
   next();
 });
 
+// Routes
+app.use('/api/complaints', complaintRoutes);
+app.use('/api/users', userRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check route
 app.get('/health', (req, res) => {

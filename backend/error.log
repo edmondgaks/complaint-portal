@@ -1,0 +1,58 @@
+2025-05-17 07:47:13 error: MongoDB connection error: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\connection.js:1165:11)
+    at NativeConnection.openUri (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\connection.js:1096:11)
+2025-05-17 08:45:58 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Infrastructure` is not a valid enum value for path `category`.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Infrastructure` is not a valid enum value for path `category`.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:22 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Roads` is not a valid enum value for path `category`.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required., category: `Roads` is not a valid enum value for path `category`.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:27 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:48:56 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:51:41 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:55:42 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 08:57:52 error: Error creating complaint: Complaint validation failed: ticketId: Path `ticketId` is required.
+ValidationError: Complaint validation failed: ticketId: Path `ticketId` is required.
+    at Document.invalidate (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3343:32)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\document.js:3104:17
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+2025-05-17 09:00:53 error: SyntaxError: Expected double-quoted property name in JSON at position 231 (line 7 column 3)
+SyntaxError: Expected double-quoted property name in JSON at position 231 (line 7 column 3)
+    at JSON.parse (<anonymous>)
+    at parse (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\body-parser\lib\types\json.js:92:19)
+    at C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\body-parser\lib\read.js:128:18
+    at AsyncResource.runInAsyncScope (node:async_hooks:211:14)
+    at invokeCallback (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:238:16)
+    at done (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:227:7)
+    at IncomingMessage.onEnd (C:\Users\edmond.gakuba\Downloads\project-bolt-sb1-ms4sgglo\project\node_modules\raw-body\index.js:287:7)
+    at IncomingMessage.emit (node:events:518:28)
+    at endReadableNT (node:internal/streams/readable:1698:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
