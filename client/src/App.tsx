@@ -23,6 +23,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/submit" element={<SubmitPage />} />
               <Route path="/track" element={<TrackPage />} />
+              <Route path="/thank-you" element={<SubmitPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/complaint/:id" element={<ComplaintDetailPage />} />

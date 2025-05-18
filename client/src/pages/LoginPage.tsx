@@ -88,6 +88,7 @@ const LoginPage: React.FC = () => {
           <div>
             <Input
               id="email"
+              name='email'
               label="Email Address"
               type="email"
               value={email}
@@ -98,6 +99,7 @@ const LoginPage: React.FC = () => {
             
             <Input
               id="password"
+              name='password'
               label="Password (any value works for demo)"
               type="password"
               value={password}
