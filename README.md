@@ -7,8 +7,6 @@ A modern, user-friendly platform that empowers citizens to submit and track comp
 
 ## [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/edmondgaks/complaint-portal)  DeepWIKI
 
-https://deepwiki.com/edmondgaks/complaint-portal
-
 
 ## 🌟 Features
 
