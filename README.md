@@ -1,9 +1,14 @@
 # complaint-portal
 
-
 # Citizen Engagement System
 
 A modern, user-friendly platform that empowers citizens to submit and track complaints about public services while enabling government administrators to efficiently manage and respond to citizen feedback.
+
+
+## [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/edmondgaks/complaint-portal)  DeepWIKI
+
+https://deepwiki.com/edmondgaks/complaint-portal
+
 
 ## 🌟 Features
 
